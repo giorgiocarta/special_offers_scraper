@@ -7,7 +7,9 @@ class ShoppingPipeline:
         self.es_url = spider.settings.attributes.get('ES_URL').value
         self.es_port = spider.settings.attributes.get('ES_PORT').value
         self.index = spider.settings.attributes.get('ES_INDEX').value
-        self.es = Elasticsearch([self.es_url], port=self.es_port)
+        self.dryrun = spider.settings.attributes.get('ES_DRYRUN').value
+        if not self.dryrun:
+            self.es = Elasticsearch([self.es_url], port=self.es_port)
 
     def close_spider(self, spider):
         pass
@@ -31,5 +33,7 @@ class ShoppingPipeline:
 
     def process_item(self, item, spider):
         data = ItemAdapter(item).asdict()
-        self.remove_lists(data).add_primary_key(data).save_item_to_elastic(data)
+        self.remove_lists(data).add_primary_key(data)
+        if not self.dryrun:
+            self.save_item_to_elastic(data)
         return item

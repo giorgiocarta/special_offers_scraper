@@ -69,10 +69,12 @@ class LidlSpider(scrapy.Spider):
         returns isodate and week number
         """
 
+        search_result = re.search(r'^(\d+.\d+)\s+-\s+\d+.\d+', raw_week)
+
         if "from" in raw_week:
             week = re.sub(r'^\D+', '', raw_week)
 
-        elif search_result := re.search(r'^(\d+.\d+)\s+-\s+\d+.\d+', raw_week):
+        elif search_result:
             week = search_result.group(1)
         else:
             week = "{}.{}".format(current_day, current_month)

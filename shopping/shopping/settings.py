@@ -14,6 +14,7 @@ NEWSPIDER_MODULE = 'shopping.spiders'
 
 # from shutil import which
 from os import getenv
+
 #
 # SELENIUM_DRIVER_NAME = 'firefox'
 # SELENIUM_DRIVER_EXECUTABLE_PATH = which('geckodriver')
@@ -44,8 +45,8 @@ CONCURRENT_REQUESTS_PER_DOMAIN = 1
 
 # Override the default request headers:
 DEFAULT_REQUEST_HEADERS = {
-  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  'Accept-Language': 'en',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    'Accept-Language': 'en',
 }
 
 # Enable or disable spider middlewares
@@ -75,6 +76,7 @@ ITEM_PIPELINES = {
 }
 
 # ElasticSearch storage
+ES_DRYRUN = True
 ES_URL = getenv('ES_URL', 'localhost')
 ES_PORT = getenv('ES_PORT', 9200)
 ES_INDEX = getenv('ES_INDEX', 'special_offers')

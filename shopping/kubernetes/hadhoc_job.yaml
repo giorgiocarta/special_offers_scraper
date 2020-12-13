@@ -10,6 +10,7 @@ spec:
       containers:
         - name: shopping
           image: giorgiocarta/shopping_offers_scraper:latest
+          imagePullPolicy: Always
           env:
             - name: ES_URL
               value: "elasticsearch"
@@ -17,3 +18,5 @@ spec:
               value: "9200"
             - name: ES_INDEX
               value: "special_offers"
+            - name: ES_DRYRUN
+              value: "False"

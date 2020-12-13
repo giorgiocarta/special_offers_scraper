@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: shoppingscraper
+spec:
+  backoffLimit: 1
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: shopping
+          image: giorgiocarta/shopping_offers_scraper:latest
+          env:
+            - name: ES_URL
+              value: "elasticsearch"
+            - name: ES_PORT
+              value: "9200"
+            - name: ES_INDEX
+              value: "special_offers"

@@ -7,7 +7,7 @@ class ShoppingPipeline:
         self.es_url = spider.settings.attributes.get('ES_URL').value
         self.es_port = spider.settings.attributes.get('ES_PORT').value
         self.index = spider.settings.attributes.get('ES_INDEX').value
-        self.dryrun = spider.settings.attributes.get('ES_DRYRUN').value
+        self.dryrun = spider.settings.attributes.get('ES_DRYRUN').value == "True"
         if not self.dryrun:
             self.es = Elasticsearch([self.es_url], port=self.es_port)
 

@@ -11,6 +11,5 @@ architecture as this is intended to run on a rasperry pi micro-server.
 Dockerhub link: giorgiocarta/shopping_offers_scraper:0.1
 
 
-
 ## Make
 build: build the image on docker
